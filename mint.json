@@ -61,10 +61,6 @@
       "pages": ["guides/hosting-api"]
     },
     {
-      "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
-    },
-    {
       "group": "Hosted Endpoint",
       "pages": [
         "api-reference/endpoint/metadata/finds-basic-info-by-slug",
@@ -86,5 +82,11 @@
     "twitter": "https://twitter.com/realCryptoids",
     "github": "https://github.com/cryptoids-api"
   },
-  "openapi": ["./openapi.yaml"]
+  "openapi": ["./openapi.yaml"],
+  "seo": {
+    "indexHiddenPages": false
+  },
+  "search": {
+    "prompt": "Search Docs"
+  }
 }
