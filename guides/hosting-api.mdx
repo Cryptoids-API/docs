@@ -1,0 +1,106 @@
+---
+title: "Upload API script to your own hosting"
+description: "Step by step process for uploading API script to your hosting or server."
+icon: "upload"
+---
+
+## Get API script
+
+[Follow vide tutorial](https://youtu.be/Gfdb_1lq9kg)
+
+After completion of order you will receive a PHP script, which contains codes that's return **TOTAL** and **CIRCULATING** supply of your token.
+
+Login to your hosting file manager, you can you any hosting that support PHP.
+I'm using [Hostinger](https://hostinger.in?REFERRALCODE=1SANJITHACK71) in my case to deploy API script.
+
+Follow instructions shown in the image. In future UI may be changed.
+
+![Hosting File Manager](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/kf7zknrwwyemvwbbzrdl)_*Hostinger File Manager*_
+
+- Click on `File Manager` highlighted red color.
+- It will redirect you to your website `File Manager`
+
+![Public HTML Folder](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/hlyvjhkjtfdr9dblmdi9)_*Hostinger Public HTML*_
+
+- There will be a folder named `pulic_html` , open that folder.
+- Now you are at root of your website.
+- We need to create a folder or directory for our PHP API code.
+- In my case I have created folder named `/api`
+- Follow below instructions to create folder
+
+![Create folder](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/kgxktpr3mmyztjaphzlf)_*Hostinger create new Folder*_
+
+- Click on `New Folder` highlighted in red color.
+- A new popup will appear.
+
+![Creatting Folder](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/mkc8hu7gef0xtlgdaw9p)_*Creating Folder*_
+
+- Click on `CREATE` highlighted in red.
+- Now you will be inside `/api` folder, if not then open the folder you have created.
+- Then we need to upload the API script, to upload you need to click the the upside arrow on right-top on your file manager.
+- Follow image instructions
+
+![Uploading new API script](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/xpexi3ermouzazdmb7wn)_*Uploading API script*_
+
+![Select upload file](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/qyr0cq96d0pm9tcethpk)_*Select upload file*_
+
+- Locate API script where you have downloaded and saved from Fiverr.
+
+![script select](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/mgpymhs1ytsxjkw5s5ow)_*Select script to upload*_
+
+![Script uploaded](https://res.cloudinary.com/daa6vklnq/image/upload/f_auto,q_auto/v1/upoald/crbgqpln6u1atbhyjlp5)_*Script has been uploaded*_
+
+- `Kaboom!` you have just successfully deployed your API script on your hosting.
+- Now we need to find out our endpoint which returns, `TOTAL` and `CIRCULATING` supply.
+- Let's take an example. If your website domain is:
+
+```
+https://example.com/
+```
+
+- And the folder you created previously was `/api` then, you can call API by:
+
+```
+https://example.com/api
+```
+
+- If you see it returns a message in `JSON` formate something like this:
+
+```json
+{
+  "status": 200,
+  "contractAddress": "0x796a4503b444a71b331c9556bef0815237ddeabc",
+  "decimal": 18,
+  "symbol": "oDOGE"
+}
+```
+
+- To access `TOTAL` and `CIRCULATING` supply API endpoint, we will pass a query parameter named `q` in this way, here is the available query
+
+| Query       | Description                                                     |
+| ----------- | --------------------------------------------------------------- |
+| maxcoins    | It returns the maximum supply of token without burn             |
+| totalcoins  | It returns total supply of your token with burn or without burn |
+| circulating | It returns the circulating supply of your token                 |
+
+- API endpoint for `TOTAL SUPPLY`:
+
+```
+https://example.com/api/?q=totalcoins
+```
+
+- API endpoint for `CIRCULATING SUPPLY`:
+
+```
+https://example.com/api/?q=circulating
+```
+
+## How token supply are calculated?
+
+According to [Coinmarketcap's documentation](https://support.coinmarketcap.com/hc/en-us/articles/360043396252-Supply-Circulating-Total-Max-)
+
+- `Max supply`: Is the number of maximum token
+- `Total supply`: Max supply - burn tokens
+- `Circulating supply`: Total supply - (Wallet hold by team/developers)
+
+We tried our best to describe set-up process. If you have any query please feel free to ask:

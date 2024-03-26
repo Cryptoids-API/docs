@@ -1,0 +1,468 @@
+openapi: 3.0.3
+info:
+  title: Chainz Cryptoid - OpenAPI 4.0
+  description: |-
+    This is API documentation for cryptoids.  You can get API at [https://www.fiverr.com/s/YBa4GK](https://www.fiverr.com/s/YBa4GK). API is documented well and detailed if you are facing any issue then reach out on Fiverr.
+
+    _If you're looking for contact us, then click [here](https://t.me/Cryptoids_admins)_
+
+    Some useful links:
+    - [Website](https://cryptoids.info/)
+    - [Fiverr](https://www.fiverr.com/s/YaQ30a)
+    - [Telegram](https://t.me/cryptoids_admins)
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: "https://chainz.cryptoids.info"
+  - url: "https://api.cryptoids.info"
+  - url: "https://raw.cryptoids.info"
+  - url: "https://id.cryptoids.info"
+tags:
+  - name: metadata
+    description: Basic info about your token
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+  - name: maxcoins
+    description: Maximum supply of your token
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+  - name: totalcoins
+    description: Total supply of your token
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+  - name: circulating
+    description: Circulating supply of your token
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+  - name: api.dws
+    description: Fetch data using api.dws
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+  - name: self_hosted
+    description: Fetching API from own server
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+  - name: self_hosted_v2
+    description: Fetching API from own server
+    externalDocs:
+      description: Get API
+      url: https://www.fiverr.com/s/YaQ30a
+paths:
+  /{slug}:
+    get:
+      tags:
+        - metadata
+      summary: Finds basic info by slug
+      description: Shows public information of token
+      parameters:
+        - name: slug
+          in: "path"
+          required: true
+          style: "simple"
+          explode: false
+          schema:
+            type: "string"
+            default: ""
+          example: baet
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Metadata"
+        "404":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+        "500":
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /{slug}/maxcoins:
+    get:
+      tags:
+        - maxcoins
+      summary: Finds maximum supply of token
+      description: Shows maximum supply of token
+      parameters:
+        - name: slug
+          in: "path"
+          required: true
+          style: "simple"
+          explode: false
+          schema:
+            type: "string"
+            default: ""
+          example: baet
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/Maxcoins"
+        "404":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+        "500":
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /{slug}/totalcoins:
+    get:
+      tags:
+        - totalcoins
+      summary: Finds total supply of token
+      description: Shows total supply of token
+      parameters:
+        - name: slug
+          in: "path"
+          required: true
+          style: "simple"
+          explode: false
+          schema:
+            type: "string"
+            default: ""
+          example: baet
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/Totalcoins"
+        "404":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+        "500":
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /{slug}/circulating:
+    get:
+      tags:
+        - circulating
+      summary: Finds circulating supply of token
+      description: Shows circulating supply of token
+      parameters:
+        - name: slug
+          in: "path"
+          required: true
+          style: "simple"
+          explode: false
+          schema:
+            type: "string"
+            default: ""
+          example: baet
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/Circulating"
+        "404":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+        "500":
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ServerError"
+  /{slug}/api.dws:
+    get:
+      tags:
+        - api.dws
+      summary: Finds token supply using query
+      description: Shows token supply
+      parameters:
+        - name: slug
+          in: "path"
+          required: true
+          style: "simple"
+          explode: false
+          schema:
+            type: "string"
+            default: ""
+          example: baet
+        - name: q
+          in: "query"
+          required: true
+          explode: false
+          style: "form"
+          schema:
+            type: string
+            default: "select_query"
+            example: "select_query"
+            enum:
+              - "select_query"
+              - "maxcoins"
+              - "totalcoins"
+              - "circulating"
+          description: Type of query
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/TokenSupply"
+        "404":
+          description: Invalid input
+          content:
+            text/plain:
+              schema:
+                default: "Not Found Get API > https://cryptoids.info"
+        "500":
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                default: "Server Error!"
+  /api:
+    post:
+      tags:
+        - self_hosted
+      summary: Finds token supply using query
+      description: Query token supply (deprecated)
+      parameters:
+        - in: header
+          name: API_KEY
+          required: true
+          schema:
+            type: string
+            default: ""
+          example: "SJ3UE1DA7BSR"
+          description: API key for authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - "contract"
+                - "slug"
+                - "query"
+              type: "object"
+              properties:
+                contract:
+                  type: "string"
+                  example: "0x43ce81f458c0ef40dd654d8573c899e9df789266"
+                  default: ""
+                slug:
+                  type: "string"
+                  example: "baet"
+                  default: ""
+                addrs:
+                  type: "array"
+                  items:
+                    type: "string"
+                  example:
+                    - "0xaed74b6070647b52299102534d41182df61f3edc"
+                    - "0x9370ffe58cef7702c40f01e6525cc0c3ccf2a702"
+                  default: []
+                strict:
+                  type: "boolean"
+                  example: false
+                  default: false
+                query:
+                  type: "string"
+                  example: "totalcoins"
+                  default: ""
+              additionalProperties: false
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/TokenSupply"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Metadata"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                default: '{"ok": false,"error": "Error Info!"}'
+        "404":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                default: '{"ok": false,"error": "Not Found Get API > https://cryptoids.info"}'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                default: '{"ok": false, "error": "Server error" }'
+
+  /api/v2:
+    get:
+      tags:
+        - self_hosted_v2
+      summary: Finds token supply using query
+      description: Query token supply
+      parameters:
+        - name: slug
+          in: query
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+            default: ""
+            example: "baet"
+          description: Token identifier
+        - name: contract
+          in: query
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+            default: ""
+            example: "0x43ce81f458c0ef40dd654d8573c899e9df789266"
+          description: Contract address of token
+        - name: strict
+          in: query
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+            default: "false"
+            example: "false"
+            enum:
+              - "true"
+              - "false"
+          description: If want to remove burn token from total supply
+        - name: query
+          in: query
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+            default: "select_query"
+            example: "totalcoins"
+            enum:
+              - "select_query"
+              - "maxcoins"
+              - "totalcoins"
+              - "circulating"
+          description: Type of query
+        - name: addrs
+          in: query
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+            # You can adjust the format and example based on your needs
+            example: "0xaed74b6070647b52299102534d41182df61f3edc,0x9370ffe58cef7702c40f01e6525cc0c3ccf2a702"
+            default: ""
+          description: Comma-separated addresses need to remove from circulating supply
+        - name: api_key
+          in: header
+          required: true
+          schema:
+            type: string
+            example: "SJ3UE1DA7BSR"
+            default: ""
+          description: API key for authentication
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/TokenSupply"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Metadata"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                default: '{"ok": false,"error": "Error Info!"}'
+        "404":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                default: '{"ok": false,"error": "Not Found Get API > https://cryptoids.info"}'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                default: '{"ok": false, "error": "Server error" }'
+components:
+  schemas:
+    NotFound:
+      type: string
+      example: "Not Found Get API > https://cryptoids.info"
+    ServerError:
+      type: string
+      example: "Server Error"
+    Maxcoins:
+      type: string
+      example: "100000000.00"
+    Totalcoins:
+      type: string
+      example: "100000000.00"
+    Circulating:
+      type: string
+      example: "99302031.00"
+    TokenSupply:
+      oneOf:
+        - $ref: "#/components/schemas/Maxcoins"
+        - $ref: "#/components/schemas/Totalcoins"
+        - $ref: "#/components/schemas/Circulating"
+    Metadata:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int64
+          example: 200
+        contractAddress:
+          type: string
+          example: "0x43ce81f458c0ef40dd654d8573c899e9df789266"
+        decimal:
+          type: integer
+          format: int64
+          example: 18
+        symbol:
+          type: string
+          example: "BAET"

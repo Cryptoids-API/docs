@@ -3,7 +3,8 @@
   "name": "Cryptoids",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href": "https://cryptoids.info"
   },
   "favicon": "/favicon.svg",
   "colors": {
@@ -18,12 +19,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "https://fiverr.com/sanjithacks"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Get API",
+    "url": "https://t.me/cryptoids_admins"
   },
   "tabs": [
     {
@@ -33,53 +34,57 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Facebook",
+      "icon": "facebook",
+      "url": "https://www.facebook.com/realCryptoids",
+      "color": "#1877F2"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Telegram",
+      "icon": "telegram",
+      "url": "https://t.me/cryptoids_admins",
+      "color": "#0088cc"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://cryptoids.info/posts/"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction", "requirements"]
     },
     {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
+      "group": "Guides",
+      "pages": ["guides/hosting-api"]
     },
     {
       "group": "API Documentation",
       "pages": ["api-reference/introduction"]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Hosted Endpoint",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/metadata/finds-basic-info-by-slug",
+        "api-reference/endpoint/maxcoins/finds-maximum-supply-of-token",
+        "api-reference/endpoint/totalcoins/finds-total-supply-of-token",
+        "api-reference/endpoint/circulating/finds-circulating-supply-of-token",
+        "api-reference/endpoint/apidws/finds-token-supply-using-query"
+      ]
+    },
+    {
+      "group": "Self Hosting",
+      "pages": [
+        "api-reference/endpoint/self_hosted/finds-token-supply-using-query",
+        "api-reference/endpoint/self_hosted_v2/finds-token-supply-using-query"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+    "twitter": "https://twitter.com/realCryptoids",
+    "github": "https://github.com/cryptoids-api"
+  },
+  "openapi": ["./openapi.yaml"]
 }
